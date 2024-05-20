@@ -1,6 +1,6 @@
 {
   "name": "@hochleistungslabor/color-hasher",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Turn strings into colors",
   "scripts": {
     "lint": "eslint src tests",

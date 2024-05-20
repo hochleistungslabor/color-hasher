@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="dist/index.js"></script>
+    <style>
+      #color-board {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: center;
+        justify-content: flex-start;
+      }
+      .color-sample {
+        padding: 16px;
+        width: 200px;
+        height: 150px;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="color-board"></div>
+    <script>
+      const strings = [
+        "Instant Sapphire Constrictor",
+        "Very Gold Pheasant",
+        "Separate Coffee Buzzard",
+        "Patient Brown Cardinal",
+        "Relieved Ivory Wallaby",
+        "Super Lime Swan",
+        "Okay Brown Emu",
+        "Selected Silver Lamprey",
+        "Creative Plum Bison",
+        "Open Amaranth Hookworm",
+        "Unwilling Gray Gibbon",
+        "Increasing Chocolate Fish",
+        "Confident Black Flea",
+        "Safe Amaranth Dormouse",
+        "Sunny Amaranth Tyrannosaurus",
+        "Selective Amber Dragonfly",
+        "Sexual Turquoise Canid",
+        "Disturbing Blue Manatee",
+        "Smooth Beige Jackal",
+        "Parallel Black Pike",
+        "Thin Amber Cicada",
+        "Urgent Beige Buzzard",
+        "Remaining Gold Hippopotamus",
+        "Causal White Cockroach",
+        "Shared Crimson Pig",
+        "Defiant Aquamarine Chinchilla",
+        "Cold Rose Eagle",
+        "Driving Coral Kiwi",
+        "Dear Silver Junglefowl",
+        "Top Gold Owl",
+        "Scary Purple Badger",
+        "Yielding Salmon Gamefowl",
+        "Great Teal Kite",
+        "Disciplinary Maroon Magpie",
+        "Exact Maroon Mongoose",
+        "Grand Amber Fowl",
+        "Annoyed Turquoise Mule",
+        "Innovative Lime Bat",
+        "Blushing Ivory Mongoose",
+        "Operational Aquamarine Tortoise",
+      ];
+
+      for (const s of strings) {
+        const color = colorHash(s);
+
+        const luminance = Math.round(color.luminance * 100) / 100;
+        const contrastBlack = Math.round(color.contrastWithBlack * 100) / 100;
+        const contrastWhite = Math.round(color.contrastWithWhite * 100) / 100;
+
+        const backgroundColor = `hsl(${color.hsl.hue}, ${color.hsl.saturation}%, ${color.hsl.lightness}%)`;
+        const fontColor = contrastBlack > contrastWhite ? "#000" : "#fff";
+
+        const text = [
+          `<p>${s}</p>`,
+          `luminance: <code>${luminance}</code>`,
+          `contrast black: <code>${contrastBlack}</code>`,
+          `contrast white: <code>${contrastWhite}</code>`,
+        ];
+
+        const colorSample = document.createElement("div");
+        colorSample.className = "color-sample";
+        colorSample.style = `background-color: ${backgroundColor}; color: ${fontColor}`;
+        colorSample.innerHTML = text.join("<br>");
+
+        document.getElementById("color-board").appendChild(colorSample);
+      }
+    </script>
+  </body>
+</html>
